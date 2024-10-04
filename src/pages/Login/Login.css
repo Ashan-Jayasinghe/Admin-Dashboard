@@ -1,0 +1,102 @@
+/* Container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f7f9fc;
+}
+
+/* Form Container */
+.login-form-container {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Heading */
+.login-heading {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  color: #333;
+}
+
+/* Input Fields */
+.login-input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Password Visibility Toggle */
+.password-toggle {
+  position: relative;
+  right: 10px;
+  cursor: pointer;
+}
+
+/* Button */
+.login-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #28a745;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #218838;
+}
+
+/* Footer Text */
+.login-footer-text {
+  margin-top: 1rem;
+  color: #666;
+}
+
+.login-link {
+  color: #28a745;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+/* Password Container */
+.password-container {
+  position: relative;
+}
+
+/* Password Input */
+.password-input {
+  padding-right: 40px; /* Add padding to make space for the icon */
+}
+
+/* Password Visibility Toggle */
+.password-toggle {
+  position: absolute;
+  right: 10px; /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #999; /* Change color as needed */
+  font-size: 1.2rem; /* Adjust size as needed */
+}
+
+/* Other existing styles remain unchanged... */

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Signup.css'; // Ensure you have your styles imported
-import '../../styles/form.css'
+import axios from 'axios'; // Import axios for API calls
+import { toast } from 'react-hot-toast'; // Import toast for notifications
+import './Signup.css'; // Import the correct CSS file for Signup
+
 function Signup() {
   const [formData, setFormData] = useState({ name: '', email: '', password: '', confirmPassword: '' });
   const [errors, setErrors] = useState({});
@@ -13,7 +15,6 @@ function Signup() {
       [e.target.name]: e.target.value,
     });
 
-    // Clear error when user starts typing
     if (errors[e.target.name]) {
       setErrors({
         ...errors,
@@ -27,22 +28,28 @@ function Signup() {
     const { name, email, password, confirmPassword } = formData;
 
     if (!name) {
+      toast.error('Name is required');
       newErrors.name = 'Name is required';
     }
 
     if (!email) {
+      toast.error('Email is required');
       newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(email)) {
+      toast.error('Email address is invalid');
       newErrors.email = 'Email address is invalid';
     }
 
     if (!password) {
+      toast.error('Password is required');
       newErrors.password = 'Password is required';
     } else if (password.length < 6) {
+      toast.error('Password must be at least 6 characters');
       newErrors.password = 'Password must be at least 6 characters';
     }
 
     if (password !== confirmPassword) {
+      toast.error('Passwords do not match');
       newErrors.confirmPassword = 'Passwords do not match';
     }
 
@@ -59,31 +66,30 @@ function Signup() {
     }
 
     try {
-      const response = await fetch('https://your-api-url.com/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        alert('Signup successful! Please log in.');
+      const response = await axios.post('https://your-api-url.com/signup', formData);
+
+      if (response.status === 200) {
+        toast.success('Signup successful! Please log in.');
         navigate('/login'); // Redirect to login page
       } else {
-        console.error('Signup failed:', data.message);
-        setErrors({ ...errors, api: data.message || 'Signup failed' });
+        toast.error(response.data.message || 'Signup failed');
+        setErrors({ ...errors, api: response.data.message || 'Signup failed' });
       }
     } catch (error) {
-      console.error('Error during signup:', error);
-      setErrors({ ...errors, api: 'An error occurred. Please try again later.' });
+      if (error.response && error.response.data.message) {
+        toast.error(error.response.data.message); // Show error from server
+        setErrors({ ...errors, api: error.response.data.message });
+      } else {
+        toast.error('An error occurred. Please try again later.'); // General error
+        setErrors({ ...errors, api: 'An error occurred. Please try again later.' });
+      }
     }
   };
 
   return (
-    <div className="container">
-      <div className="form-container">
-        <h2 className="heading">Sign Up</h2>
+    <div className="signup-container">
+      <div className="signup-form-container">
+        <h2 className="signup-heading">Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <div>
             <input
@@ -92,7 +98,7 @@ function Signup() {
               placeholder="Name"
               value={formData.name}
               onChange={handleChange}
-              className="input"
+              className="signup-input"
             />
             {errors.name && <p className="error-message">{errors.name}</p>}
           </div>
@@ -103,7 +109,7 @@ function Signup() {
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
-              className="input"
+              className="signup-input"
             />
             {errors.email && <p className="error-message">{errors.email}</p>}
           </div>
@@ -114,7 +120,7 @@ function Signup() {
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
-              className="input"
+              className="signup-input"
             />
             {errors.password && <p className="error-message">{errors.password}</p>}
           </div>
@@ -125,18 +131,18 @@ function Signup() {
               placeholder="Confirm Password"
               value={formData.confirmPassword}
               onChange={handleChange}
-              className="input"
+              className="signup-input"
             />
             {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}
           </div>
           {errors.api && <p className="error-message">{errors.api}</p>}
-          <button type="submit" className="button">
+          <button type="submit" className="signup-button">
             Sign Up
           </button>
         </form>
-        <p className="footer-text">
+        <p className="signup-footer-text">
           Already have an account?{' '}
-          <a href="/login" className="link">
+          <a href="/login" className="signup-link">
             Log In
           </a>
         </p>

@@ -1,0 +1,86 @@
+/* Container */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f9fc;
+  }
+  
+  /* Form Container */
+  .profile-form {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  /* Heading */
+  .heading {
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    color: #333;
+  }
+  
+  /* Profile Picture */
+  .profile-pic-section {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Profile Picture Preview */
+  .profile-pic-preview {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+  }
+  
+  /* Input Fields */
+  .input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem; /* Increased margin-bottom for spacing */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .input:focus {
+    outline: none;
+    border-color: #28a745;
+  }
+  
+  /* Buttons */
+  .edit-btn, .save-btn, .button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #28a745;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 1rem; /* Added margin-bottom for buttons */
+  }
+  
+  .edit-btn:hover, .save-btn:hover, .button:hover {
+    background-color: #218838;
+  }
+  
+  /* Profile Labels */
+  .profile-label {
+    margin: 0.5rem 0;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  /* Footer Text */
+  .profile-footer-text {
+    margin-top: 1rem;
+    color: #666;
+  }
