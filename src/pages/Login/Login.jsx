@@ -86,7 +86,7 @@ function Login() {
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
-              className="login-input"
+              className="login-input password-input" // Added a class for styling
             />
             <span className="password-toggle" onClick={togglePasswordVisibility}>
               <span className="material-icons">
